@@ -34,11 +34,6 @@ class Source<in T:Number>{
 }
 
 
-interface Person<I>{
-    fun set(info:I)
-
-    fun getInfo():I
-}
 
 abstract class AbsInfo {
     fun print(info:String){
@@ -51,6 +46,14 @@ open class Info:AbsInfo(){
 
 class WorkInfo:Info(){
 
+}
+
+
+//类型参数添加约束
+interface Person<I:AbsInfo>{
+    fun set(info:I)
+
+    fun getInfo():I
 }
 
 class Student():Person<WorkInfo>{
