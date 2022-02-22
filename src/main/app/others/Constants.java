@@ -4,8 +4,9 @@ public class Constants {
     public Constants() {
     }
 
-   public Constants newInstance() {
+    public static Constants newInstance() {
         return new Constants();
     }
+
     public static final int VERSION = 15;
 }

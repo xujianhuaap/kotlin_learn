@@ -1,15 +1,30 @@
 package reflect
 
 import others.Constants
+import kotlin.reflect.KClass
 import kotlin.reflect.full.*
 
 fun main() {
     println("=== welcome to Kotlin lesson ===")
     Plant<Any>("rose", "red").printInfo("")
 
-    val clazz = Plant::class
+    val clazz = Constants::class
+    printClazzInfo(clazz)
+
+
+
+    println("object class reflect.Rose property ${Rose::class.objectInstance}")
+    println("top level const ${::VERSION}")
+    println("top level function ${::printVersion}")
+
+    println("${Constants::class.staticProperties}")
+}
+
+private fun printClazzInfo(clazz: KClass<*>) {
     println("clazz typeParameters ${clazz.typeParameters}")
     println("clazz members ${clazz.members}")
+    println("clazz declaredMembers ${clazz.declaredMembers}")
+
     println("clazz member property ${clazz.memberProperties}")
     println("clazz declare member properties ${clazz.declaredMemberProperties}")
     println("clazz declaredMemberExtensionProperties ${clazz.memberExtensionProperties}")
@@ -17,6 +32,7 @@ fun main() {
 
 
     println("clazz functions ${clazz.functions}")
+    println("clazz staticFunctions ${clazz.staticFunctions}")
     println("clazz memberFunctions ${clazz.memberFunctions}")
     println("clazz memberExtensionFunctions ${clazz.memberExtensionFunctions}")
 
@@ -26,14 +42,6 @@ fun main() {
         "clazz isAbstract ${clazz.isAbstract}, isOpen ${clazz.isOpen}, isFinal ${clazz.isFinal}, " +
                 "isData ${clazz.isData},isCompanion ${clazz.isCompanion}"
     )
-
-
-
-    println("object class reflect.Rose property ${Rose::class.objectInstance}")
-    println("top level const ${::VERSION}")
-    println("top level function ${::printVersion}")
-
-    println("${Constants::class.staticProperties}")
 }
 
 
