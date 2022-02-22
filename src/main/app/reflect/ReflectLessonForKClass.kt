@@ -15,6 +15,11 @@ fun main() {
     println("clazz declaredMemberExtensionProperties ${clazz.memberExtensionProperties}")
     println("clazz declaredMemberExtensionFunctions ${clazz.declaredMemberExtensionFunctions}")
 
+
+    println("clazz functions ${clazz.functions}")
+    println("clazz memberFunctions ${clazz.memberFunctions}")
+    println("clazz memberExtensionFunctions ${clazz.memberExtensionFunctions}")
+
     println("clazz companionObject ${clazz.companionObject?.memberProperties}")
 
     println(
