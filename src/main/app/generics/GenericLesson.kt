@@ -1,13 +1,15 @@
+package generics
+
 fun main() {
     println("=== welcome to kotlin generic lesson ===")
     val doubleSource = Source<Double>()
     val numberSource = Source<Number>()
 
-    val t:Source<Double> = numberSource
+    val t: Source<Double> = numberSource
     t.printInfo(0.0)
 
-    val student = Student()
-    val someBody = SomeBody()
+    val student = Student(WorkInfo())
+    val someBody = SomeBody(Info())
     copyPerson(student,someBody)
 
 
@@ -23,9 +25,9 @@ fun main() {
 //类型参数 （out 或者 in)这种可以定义Source的时候添加，也可以使用的时候根据场景，在决定out 或者 in
 
 /***
- * out 表示 Source 是 T的生产者，支持协变，Source<Base> 是Source<Derived>的父类
+ * out 表示 generics.Source 是 T的生产者，支持协变，generics.Source<Base> 是Source<Derived>的父类
  * 是安全的。
- * in 表示Source 是 T 的消费者，支持逆变，Source<Base> 可以赋值给Source<Derived>是安全的.
+ * in 表示Source 是 T 的消费者，支持逆变，generics.Source<Base> 可以赋值给Source<Derived>是安全的.
  */
 class Source<in T:Number>{
     fun printInfo(t:T){
@@ -40,44 +42,46 @@ abstract class AbsInfo {
         println(info)
     }
 }
-open class Info:AbsInfo(){
+open class Info: AbsInfo(){
 
 }
 
-class WorkInfo:Info(){
+class WorkInfo: Info(){
 
 }
 
 
 //类型参数添加约束
-interface Person<I:AbsInfo>{
-    fun set(info:I)
+interface Person<I: AbsInfo>{
+    fun setInfo(info:I)
 
     fun getInfo():I
 }
 
-class Student():Person<WorkInfo>{
-    override fun set(info: WorkInfo) {
-        TODO("Not yet implemented")
+class Student(var source: WorkInfo): Person<WorkInfo> {
+
+
+    override fun setInfo(info: WorkInfo) {
+       this.source = info
     }
 
     override fun getInfo(): WorkInfo {
-        TODO("Not yet implemented")
+        return this.source
     }
 }
 
-class SomeBody:Person<AbsInfo>{
-    override fun set(info: AbsInfo) {
-        TODO("Not yet implemented")
+class SomeBody(var source: AbsInfo): Person<AbsInfo> {
+    override fun setInfo(info: AbsInfo) {
+        this.source = info
     }
 
     override fun getInfo(): AbsInfo {
-        TODO("Not yet implemented")
+        return source
     }
 }
 
 //根据使用场景 制定用out 还是 in
-fun copyPerson(from:Person<out Info>,to:Person<in Info>){
-        to.set(from.getInfo())
-        to.set(WorkInfo())
+fun copyPerson(from: Person<out Info>, to: Person<in Info>){
+        to.setInfo(from.getInfo())
+        to.setInfo(WorkInfo())
 }

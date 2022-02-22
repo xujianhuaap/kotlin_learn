@@ -1,15 +1,17 @@
+package others;
+
 /***
  * java8 新增的交集类型
  */
 public class IntersectionType {
 
     public static void main(String[] args) {
-        Flower f = (Flower & Plant) (s)-> s+"";
+        Flower f = (Flower & SPlant) (s)-> s+"";
     }
 }
 
 
-interface Plant {
+interface SPlant {
 
 }
 
