@@ -12,6 +12,8 @@ public class JavaFamily {
         plantManager.savePlant(new Plant("plant","red"));
         Living living = plantManager.getLivingImpl(0);
         Flower flower = flowerManager.getLivingImpl(0);
+
+        Flower flower1 = new Flower("flower");
     }
 
 }

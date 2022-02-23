@@ -23,7 +23,7 @@ open class Living(var name: String)
 
 open class Plant(name: String, val color: String) : Living(name)
 
-class Flower(name: String, color: String, val smell: String) : Plant(name, color)
+class Flower  @JvmOverloads constructor( name: String, color: String="red", val smell: String = "good") : Plant(name, color)
 
 class Garden<L>(val living: L)
 
