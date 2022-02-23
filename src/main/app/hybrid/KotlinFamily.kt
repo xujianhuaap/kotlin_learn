@@ -1,5 +1,7 @@
 package hybrid
 
+import java.io.IOException
+
 fun main() {
     println("=== welcome to kotlin and java ===")
     val arr = arrayOf(1, 2, 3)
@@ -54,7 +56,9 @@ abstract class AbsPlantManager<T:Living>:PlantManager<T,Plant>{
 }
 class FlowerManager: AbsPlantManager<Flower>() {
 
+    @Throws(IOException::class)
     override fun getLivingImpl(index: Int): Flower {
+        throw IOException("---test ----")
         return sources.filterIsInstance<Flower>()[index]
     }
 }
